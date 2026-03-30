@@ -1,7 +1,7 @@
 :root {
-    --primary: #9c27b0;      /* фиолетовый */
+    --primary: #9c27b0;
     --primary-dark: #7b1fa2;
-    --secondary: #4caf50;    /* зелёный */
+    --secondary: #4caf50;
     --secondary-dark: #2e7d32;
     --accent: #ba68c8;
     --dark: #121212;
@@ -33,10 +33,10 @@ body {
 .container {
     max-width: 600px;
     margin: 0 auto;
-    padding: 20px 16px 40px;
+    padding: 20px 16px 20px;
 }
 
-/* Шапка с градиентом */
+/* Шапка */
 .header {
     text-align: center;
     margin-bottom: 24px;
@@ -149,6 +149,7 @@ body {
     border-radius: 16px;
     margin-bottom: 10px;
     backdrop-filter: blur(4px);
+    color: #fff;
 }
 
 /* Формы */
@@ -198,7 +199,27 @@ button:hover {
     border: 1px solid rgba(76,175,80,0.3);
 }
 
-/* Адаптация под тему Telegram */
+/* Футер */
+.footer {
+    margin-top: 40px;
+    padding: 20px 0 10px;
+    border-top: 1px solid rgba(156,39,176,0.3);
+    text-align: center;
+    font-size: 12px;
+    color: var(--text-muted);
+}
+
+.contacts {
+    margin-bottom: 10px;
+    font-size: 13px;
+    color: #ccc;
+}
+
+.copyright {
+    font-size: 11px;
+}
+
+/* Адаптация под светлую тему */
 @media (prefers-color-scheme: light) {
     body {
         background: #f5f5f5;
@@ -209,5 +230,9 @@ button:hover {
     }
     .feature {
         background: rgba(76,175,80,0.05);
+        color: #1a1a1a;
+    }
+    .contacts {
+        color: #555;
     }
 }
