@@ -2,39 +2,54 @@ let tg = window.Telegram.WebApp;
 tg.expand();
 tg.enableClosingConfirmation();
 
-// Адаптация цвета кнопки (опционально)
+// Адаптация цвета кнопки
 if (tg.themeParams.button_color) {
     document.documentElement.style.setProperty('--primary', tg.themeParams.button_color);
 }
 
-// Вкладки
+// ========== РАБОТА ВКЛАДОК ==========
 document.querySelectorAll('.tab-btn').forEach(btn => {
     btn.addEventListener('click', () => {
         const tabId = btn.getAttribute('data-tab');
-        document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
-        document.getElementById(tabId).classList.add('active');
-        document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+        // Скрыть все вкладки
+        document.querySelectorAll('.tab-content').forEach(tab => {
+            tab.classList.remove('active');
+        });
+        // Показать выбранную
+        const activeTab = document.getElementById(tabId);
+        if (activeTab) activeTab.classList.add('active');
+        // Переключить активный класс кнопок
+        document.querySelectorAll('.tab-btn').forEach(b => {
+            b.classList.remove('active');
+        });
         btn.classList.add('active');
     });
 });
 
-// Калькулятор экономии
-document.getElementById('calcBtn')?.addEventListener('click', () => {
-    const area = parseFloat(document.getElementById('area').value);
-    const heating = parseFloat(document.getElementById('heating').value);
-    let resultText = '';
-    if (isNaN(area) && isNaN(heating)) {
-        resultText = 'Введите хотя бы один параметр.';
-    } else {
-        let savings = 0;
-        if (!isNaN(heating)) savings = heating * 0.3;
-        if (!isNaN(area)) savings = Math.max(savings, area * 15);
-        resultText = `💰 Примерная экономия в месяц: ${Math.round(savings)} ₽<br>📅 За год: ${Math.round(savings * 12)} ₽`;
-    }
-    document.getElementById('result').innerHTML = resultText;
-});
+// ========== КАЛЬКУЛЯТОР ЭКОНОМИИ ==========
+const calcBtn = document.getElementById('calcBtn');
+if (calcBtn) {
+    calcBtn.addEventListener('click', () => {
+        const areaInput = document.getElementById('area');
+        const heatingInput = document.getElementById('heating');
+        const area = parseFloat(areaInput ? areaInput.value : NaN);
+        const heating = parseFloat(heatingInput ? heatingInput.value : NaN);
+        
+        let resultText = '';
+        if (isNaN(area) && isNaN(heating)) {
+            resultText = 'Введите хотя бы один параметр.';
+        } else {
+            let savings = 0;
+            if (!isNaN(heating)) savings = heating * 0.3;
+            if (!isNaN(area)) savings = Math.max(savings, area * 15);
+            resultText = `💰 Примерная экономия в месяц: ${Math.round(savings)} ₽<br>📅 За год: ${Math.round(savings * 12)} ₽`;
+        }
+        const resultDiv = document.getElementById('result');
+        if (resultDiv) resultDiv.innerHTML = resultText;
+    });
+}
 
-// Заявка
+// ========== ЗАЯВКА ==========
 const form = document.getElementById('orderForm');
 if (form) {
     form.addEventListener('submit', (e) => {
@@ -44,7 +59,8 @@ if (form) {
         const school = document.getElementById('school').value.trim();
         const version = document.getElementById('version').value;
         if (!name || !phone || !school) {
-            document.getElementById('formMessage').innerHTML = '⚠️ Заполните все поля.';
+            const msgDiv = document.getElementById('formMessage');
+            if (msgDiv) msgDiv.innerHTML = '⚠️ Заполните все поля.';
             return;
         }
         const data = {
@@ -55,7 +71,8 @@ if (form) {
             version: version
         };
         tg.sendData(JSON.stringify(data));
-        document.getElementById('formMessage').innerHTML = '✅ Заявка отправлена! Мы свяжемся с вами.';
+        const msgDiv = document.getElementById('formMessage');
+        if (msgDiv) msgDiv.innerHTML = '✅ Заявка отправлена! Мы свяжемся с вами.';
         form.reset();
         setTimeout(() => tg.close(), 2000);
     });
