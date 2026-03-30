@@ -1,7 +1,7 @@
 :root {
-    --primary: #9c27b0;
+    --primary: #9c27b0;      /* фиолетовый */
     --primary-dark: #7b1fa2;
-    --secondary: #4caf50;
+    --secondary: #4caf50;    /* зелёный */
     --secondary-dark: #2e7d32;
     --accent: #ba68c8;
     --dark: #121212;
@@ -9,6 +9,7 @@
     --gray-light: #2c2c2c;
     --text: #ffffff;
     --text-muted: #b0b0b0;
+    --text-light: #f0f0f0;
     
     --gradient-primary: linear-gradient(135deg, #9c27b0, #4caf50);
     --gradient-dark: linear-gradient(135deg, #1a1a1a, #2c2c2c);
@@ -33,10 +34,10 @@ body {
 .container {
     max-width: 600px;
     margin: 0 auto;
-    padding: 20px 16px 20px;
+    padding: 20px 16px 40px;
 }
 
-/* Шапка */
+/* Шапка с градиентом */
 .header {
     text-align: center;
     margin-bottom: 24px;
@@ -122,6 +123,17 @@ body {
     display: inline-block;
 }
 
+/* Списки в карточках – теперь текст виден */
+.card ul {
+    margin-left: 20px;
+    margin-bottom: 16px;
+    color: var(--text-light);
+}
+.card li {
+    margin-bottom: 6px;
+    color: var(--text-light);
+}
+
 .price {
     font-size: 28px;
     font-weight: 800;
@@ -149,7 +161,7 @@ body {
     border-radius: 16px;
     margin-bottom: 10px;
     backdrop-filter: blur(4px);
-    color: #fff;
+    color: var(--text-light);
 }
 
 /* Формы */
@@ -197,26 +209,32 @@ button:hover {
     border-radius: 20px;
     text-align: center;
     border: 1px solid rgba(76,175,80,0.3);
+    color: var(--text-light);
 }
 
 /* Футер */
 .footer {
-    margin-top: 40px;
-    padding: 20px 0 10px;
-    border-top: 1px solid rgba(156,39,176,0.3);
+    margin-top: 30px;
+    padding-top: 20px;
     text-align: center;
+    border-top: 1px solid rgba(156,39,176,0.3);
     font-size: 12px;
     color: var(--text-muted);
 }
-
-.contacts {
-    margin-bottom: 10px;
-    font-size: 13px;
-    color: #ccc;
+.footer p {
+    margin: 5px 0;
 }
 
-.copyright {
-    font-size: 11px;
+.secure-note {
+    font-size: 13px;
+    margin-bottom: 12px;
+    color: var(--text-muted);
+}
+
+.form-message {
+    margin-top: 12px;
+    text-align: center;
+    color: var(--secondary);
 }
 
 /* Адаптация под светлую тему */
@@ -230,9 +248,13 @@ button:hover {
     }
     .feature {
         background: rgba(76,175,80,0.05);
+    }
+    .card ul li {
         color: #1a1a1a;
     }
-    .contacts {
-        color: #555;
+    .card .price {
+        background: linear-gradient(135deg, var(--secondary-dark), var(--primary-dark));
+        -webkit-background-clip: text;
+        background-clip: text;
     }
 }
