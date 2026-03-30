@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Green Future – умный климат для школы</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🍃 Green Future</h1>
+            <p>Интеллектуальный климат-контроль</p>
+        </div>
+
+        <div class="tabs">
+            <button class="tab-btn active" data-tab="main">Главная</button>
+            <button class="tab-btn" data-tab="prices">Комплектации</button>
+            <button class="tab-btn" data-tab="calc">Калькулятор</button>
+            <button class="tab-btn" data-tab="order">Заявка</button>
+        </div>
+
+        <!-- Главная -->
+        <div id="main" class="tab-content active">
+            <div class="card">
+                <h3>Свежий воздух – это не роскошь</h3>
+                <p>Green Future автоматически поддерживает параметры микроклимата по СанПиН. Больше никакой духоты и сквозняков.</p>
+                <div class="features">
+                    <div class="feature">✅ Автоматическое соблюдение СанПиН</div>
+                    <div class="feature">💰 Экономия до 30% на отоплении</div>
+                    <div class="feature">📈 Повышение успеваемости на 15–20%</div>
+                    <div class="feature">🔒 Облачные отчёты для Роспотребнадзора</div>
+                </div>
+            </div>
+            <div class="card" style="text-align:center">
+                <p>✨ Установка под ключ – от 289 800 ₽</p>
+                <p style="font-size:12px; opacity:0.7">*с учётом монтажа и пусконаладки</p>
+            </div>
+        </div>
+
+        <!-- Комплектации -->
+        <div id="prices" class="tab-content">
+            <div class="card">
+                <h3>Standard</h3>
+                <ul style="margin-left:20px; margin-bottom:12px">
+                    <li>Контроль CO₂ и температуры</li>
+                    <li>Управление ПВУ, дисплей в классе</li>
+                    <li>Облачная отчётность</li>
+                </ul>
+                <p class="price">374 499 ₽ <span class="old-price">(включая годовую подписку 15 000 ₽)</span></p>
+            </div>
+            <div class="card pro">
+                <h3>Pro ⭐</h3>
+                <ul style="margin-left:20px; margin-bottom:12px">
+                    <li>Всё из Standard</li>
+                    <li>Мониторинг пыли PM2.5/PM10</li>
+                    <li>Аналитика на базе ИИ + голосовой помощник</li>
+                    <li>Интеграция с сайтом школы</li>
+                </ul>
+                <p class="price">428 624 ₽ <span class="old-price">(премиум-подписка 20 000 ₽/год)</span></p>
+            </div>
+        </div>
+
+        <!-- Калькулятор экономии -->
+        <div id="calc" class="tab-content">
+            <div class="card">
+                <h3>Сколько сэкономит ваша школа?</h3>
+                <label>Площадь класса (м²):</label>
+                <input type="number" id="area" placeholder="например, 60">
+                <label>Текущие расходы на отопление в месяц (₽):</label>
+                <input type="number" id="heating" placeholder="например, 10 000">
+                <button id="calcBtn">Рассчитать экономию</button>
+                <div id="result" class="result"></div>
+            </div>
+        </div>
+
+        <!-- Заявка -->
+        <div id="order" class="tab-content">
+            <div class="card">
+                <h3>Оставьте заявку</h3>
+                <p style="font-size:13px; margin-bottom:12px">🔒 Ваши данные защищены и будут использованы только для связи.</p>
+                <form id="orderForm">
+                    <input type="text" id="name" placeholder="Ваше имя" required>
+                    <input type="tel" id="phone" placeholder="Телефон" required>
+                    <input type="text" id="school" placeholder="Школа / организация" required>
+                    <select id="version">
+                        <option value="Standard">Green Future Standard</option>
+                        <option value="Pro">Green Future Pro</option>
+                    </select>
+                    <button type="submit">Отправить заявку</button>
+                </form>
+                <div id="formMessage" style="margin-top:12px; text-align:center"></div>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
